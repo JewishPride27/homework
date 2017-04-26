@@ -62,6 +62,7 @@ if(code.size())
 code.pop_back();
 }
 }
+}
 
 node* Huffman()
 {
