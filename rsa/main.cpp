@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdlib.h> //rand()
 #include <time.h> //srand
-
+#include <math.h>
 
 
 
@@ -18,13 +18,13 @@ bool isPrime(int a)
 
 }
 
- int extEuclid (unsigned long int a, unsigned long int b, unsigned long int & x, unsigned long int & y) {
+ unsigned long int extEuclid (unsigned long int a, unsigned long int b, unsigned long int & x, unsigned long int & y) {
 	if (a == 0) {
 		x = 0; y = 1;
 		return b;
 	}
 	unsigned long int x1, y1;
-	 int d = extEuclid (b%a, a, x1, y1);
+	 unsigned long int d = extEuclid (b%a, a, x1, y1);
 	x = y1 + (b / a) * x1;
 	y = x1;
 	return d;
@@ -79,15 +79,15 @@ for(int i = 0; i < str.size(); i++)
     std::cout << std::endl;
 
 for(int i = 0; i < str.size(); i++){
-    values[i] = binpow(values[i], e);
-    values[i] %= n;
-    std::cout << values[i] << " ";
+    unsigned long int t = binpow(values[i], e);
+    t%=n;
+    std::cout << t << " ";
 }
 std::cout << std::endl;
    return values;
 }
 
-void decrypt(unsigned long int d, unsigned long int n, std::vector <unsigned long int> message){ //не работает, почему - непонятно
+void decrypt(unsigned long int d, unsigned long int n, std::vector <unsigned long int> message){
     std::string str;
     std::cout << "Enter the message to be decrypted:";
     std::cout << std::endl;
@@ -96,9 +96,9 @@ void decrypt(unsigned long int d, unsigned long int n, std::vector <unsigned lon
         std::cout << std::endl;
 
     for (int i = 0; i < message.size(); i++){
-        message[i] = binpow(message[i], d);
-        message[i] %= n;
-        std::cout << message[i] << " ";
+        unsigned long int t = binpow(message[i], d);
+        t%=n;
+        std::cout << t << " ";
     }
     std::cout << std::endl;
 
